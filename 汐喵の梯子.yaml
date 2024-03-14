@@ -19,27 +19,27 @@ dns:
     - 223.5.5.5
 
 proxies:
-  - name: "🇯🇵OsakaIPLC-汐汐喵の小梯子"
+  - name: "🇯🇵OsakaIPLC-汐喵の小梯子"
     type: hysteria
     server: xixixixiyan.xiliqing.top
     port: 8080
-    auth_str: bIuRbvdLciUfoknmj4rPNqsJO1g4SMbF4iraMQxHH0RvbkglyQ
+    auth_str: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
     alpn:
       - h3
     protocol: wechat-video
     up: 110
-    down: 550
+    down: 220
     sni: xixixixiyan.xiliqing.top
     skip-cert-verify: false
-    recv_window_conn: 12845056
-    recv_window: 51380224
+    recv_window_conn: 3932160
+    recv_window: 15728640
     disable_mtu_discovery: true
     fast-open: true
 proxy-groups:
   - name: "PROXY"
     type: select
     proxies:
-     - 🇯🇵OsakaIPLC-汐汐喵の小梯子
+     - 🇯🇵OsakaIPLC-汐喵の小梯子
 
 rule-providers:
   reject:
