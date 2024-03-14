@@ -23,7 +23,7 @@ proxies:
     type: hysteria
     server: xixixixiyan.xiliqing.top
     port: 8080
-    auth: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
+    auth_str: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
     alpn:
       - h3
     protocol: wechat-video
@@ -139,7 +139,7 @@ rule-providers:
     url: "https://ghproxy.com/https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt"
     path: ./ruleset/applications.yaml
     interval: 86400
-
+hysteria://xixixixiyan.xiliqing.top:8080?protocol=wechat-video&auth=se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77&obfsParam=&peer=xixixixiyan.xiliqing.top&insecure=0&upmbps=110&downmbps=220&alpn=h3#🇯🇵OsakaIPLC-汐喵の小梯子
 rules:
   - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
