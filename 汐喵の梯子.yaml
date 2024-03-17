@@ -23,7 +23,7 @@ proxies:
     type: hysteria
     server: xixixixiyan.xiliqing.top
     port: 8080
-    auth_str: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
+    uuid: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
     alpn:
       - h3
     protocol: wechat-video
@@ -38,17 +38,17 @@ proxies:
   - name: "🇭🇰HKのIPLC-璃清の小梯子"
     type: hysteria
     server: xiandli.xiliqing.top
-    port: 8443
-    auth_str: KP9a3MyL8N2QrkkLC9GrBexZEAhgrXvm0RpXAyaYdxavnwmGtb
+    port: 2333
+    auth_str: K1aRjzCZR9582w1KP2vWWW6uaZ1qp57ltUxzPrDtT5chnppi4H
     alpn:
       - h3
-    protocol: faketcp
+    protocol: udp
     up: 33
     down: 33
     sni: xiandli.xiliqing.top
     skip-cert-verify: false
-    recv_window_conn: 262144
-    recv_window: 1048576
+    recv_window_conn: 524288
+    recv_window: 2097152
     disable_mtu_discovery: true
     fast-open: true
 
