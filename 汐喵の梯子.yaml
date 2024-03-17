@@ -23,7 +23,7 @@ proxies:
     type: hysteria
     server: xixixixiyan.xiliqing.top
     port: 8080
-    uuid: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
+    auth: se6WG9vG6oRuasxw26r4tWI3PinMBJU9FE4nXecP6UcweqGh77
     alpn:
       - h3
     protocol: wechat-video
