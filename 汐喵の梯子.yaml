@@ -39,8 +39,8 @@ proxies:
   - name: "🇭🇰HKのIPLC-璃清の小梯子"
     type: hysteria
     server: xiandli.xiliqing.top
-    port: 2333
-    auth_str: K1aRjzCZR9582w1KP2vWWW6uaZ1qp57ltUxzPrDtT5chnppi4H
+    ports: 8443,10000-20000
+    auth_str: tp4UJzYSDySlK1InFlGi9DknuecmH2CiBtY1L5qTF4CAljPucE
     alpn:
       - h3
     protocol: udp
@@ -48,8 +48,8 @@ proxies:
     down: 33
     sni: xiandli.xiliqing.top
     skip-cert-verify: false
-    recv_window_conn: 524288
-    recv_window: 2097152
+    recv_window_conn: 262144
+    recv_window: 1048576
     disable_mtu_discovery: true
     fast-open: true
 
