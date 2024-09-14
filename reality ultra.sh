@@ -39,7 +39,7 @@ if [ $# -ge 1 ]; then
     case ${1} in
     4)
         netstack=4
-        ip=$(curl -4s https://www.cloudflare.com/cdn-cgi/trace | grep -oP 'ip=\K.*$')
+        ip=$(curl -4s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
         ;;
     6)
         netstack=6
@@ -137,36 +137,21 @@ if [[ -z $netstack ]]; then
   echo -e "如果你的小鸡是${magenta}双栈(同时有IPv4和IPv6的IP)${none}，请选择你把Xray搭在哪个'网口'上"
   echo "如果你不懂这段话是什么意思, 请直接回车"
   read -p "$(echo -e "Input ${cyan}4${none} for IPv4, ${cyan}6${none} for IPv6:") " netstack
-
-  # 本机IP
-  InFaces=($(ifconfig -s | awk '{print $1}' | grep -E '^(eth|ens|eno|esp|enp|venet|vif)'))  #找所有的网口
-
-  for i in "${InFaces[@]}"; do  # 从网口循环获取IP
-    Public_IPv4=$(curl -4s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
-    Public_IPv6=$(curl -6s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
-
-    if [[ -n "$Public_IPv4" || -n "$Public_IPv6" ]]; then  # 检查是否获取到IP地址
-      IPv4="$Public_IPv4"
-      IPv6="$(ip route get 2606:4700:4700::1001 2>/dev/null | grep -oP 'src \K\S+' || ip route get 2620:fe::fe 2>/dev/null | grep -oP 'src \K\S+')"
-      break  # 获取到任一IP类型停止循环
-    fi
-  done
-
-  if [[ $netstack == "4" ]]; then
-    ip=$IPv4
-  elif [[ $netstack == "6" ]]; then
-    ip=$IPv6
-  else
-    if [[ -n "$IPv4" ]]; then
-      ip=$IPv4
-      netstack=4
-    elif [[ -n "$IPv6" ]]; then
-      ip=$IPv6
-      netstack=6
-    fi
-  fi
 fi
-
+#键入ip地址
+if [[ $netstack == "4" ]]; then
+  echo
+  read -p "$(echo -e "请输入 ${cyan}IPv4${none} 地址:") " ip
+  echo
+  echo -e "$yellow IPv4地址 (ip) = ${magenta}${ip}${none}"
+  echo "----------------------------------------------------------------"
+elif [[ $netstack == "6" ]]; then
+  echo
+  read -p "$(echo -e "请输入 ${cyan}IPv6${none} 地址:") " ip
+  echo
+  echo -e "$yellow IPv6地址 (ip) = ${magenta}${ip}${none}"
+  echo "----------------------------------------------------------------"
+fi
 # 端口
 if [[ -z $port ]]; then
   default_port=443
