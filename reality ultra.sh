@@ -39,7 +39,7 @@ if [ $# -ge 1 ]; then
     case ${1} in
     4)
         netstack=4
-        ip=$(curl -4s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
+        ip=$(curl -4s https://www.cloudflare.com/cdn-cgi/trace | grep -oP 'ip=\K.*$')
         ;;
     6)
         netstack=6
@@ -143,11 +143,11 @@ if [[ -z $netstack ]]; then
 
   for i in "${InFaces[@]}"; do  # 从网口循环获取IP
     Public_IPv4=$(curl -4s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
-    Public_IPv6=$(ip route get 2606:4700:4700::1001 2>/dev/null | grep -oP 'src \K\S+' || ip route get 2620:fe::fe 2>/dev/null | grep -oP 'src \K\S+')
+    Public_IPv6=$(curl -6s --interface "$i" https://www.cloudflare.com/cdn-cgi/trace | grep -oP "ip=\K.*$")
 
     if [[ -n "$Public_IPv4" || -n "$Public_IPv6" ]]; then  # 检查是否获取到IP地址
       IPv4="$Public_IPv4"
-      IPv6="$Public_IPv6"
+      IPv6="$(ip route get 2606:4700:4700::1001 2>/dev/null | grep -oP 'src \K\S+' || ip route get 2620:fe::fe 2>/dev/null | grep -oP 'src \K\S+')"
       break  # 获取到任一IP类型停止循环
     fi
   done
