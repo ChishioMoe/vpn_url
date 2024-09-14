@@ -143,7 +143,7 @@ fi
 #键入ip地址
 if [[ $netstack == "4" || -z $netstack ]]; then
   echo
-  read -p "$(echo -e "请输入 ${cyan}IPv4${none} 地址:") " ip
+  read -p "$(echo -e "请输入 ${cyan}IPv4（IP）${none} 地址:") " ip
   echo
   echo -e "$yellow IPv4地址 (ip) = ${magenta}${ip}${none}"
   echo "----------------------------------------------------------------"
